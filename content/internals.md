@@ -79,6 +79,14 @@ Lists of freed chunks
 | Large | Range of sizes | Two-levels doubly-linked | |
 
 
+## tcache (2.26+)
+* Thread local storage caching
+* Singly linked list in chunk's `fd` (sim. to FastBins)
+* All sizes
+* Major performance enhancement 
+* Not even trying to be secured :/
+
+
 ### Arena (`malloc_state` struct)
 ```C
 --------------------------------------------------------------------------
@@ -121,10 +129,3 @@ Shamelessly copied from [GlibC Malloc Internals][MallocInternals]
 3. Search through the best fit bins
 4. Split the top
 
-
-## tcache (2.26+)
-* Thread local storage caching
-* Singly linked list in chunk's `fd` (sim. to FastBins)
-* All sizes
-* Major performance enhancement 
-* Not even trying to be secured :/

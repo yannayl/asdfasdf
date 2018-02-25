@@ -41,6 +41,18 @@
                     data-separator-vertical="^\n\n"
                     data-separator-notes="^Note:">
                 </section>
+                <section data-markdown="content/triggers.md"
+                    data-separator-vertical="^\n\n"
+                    data-separator-notes="^Note:">
+                </section>
+                <section data-markdown="content/setup.md"
+                    data-separator-vertical="^\n\n"
+                    data-separator-notes="^Note:">
+                </section>
+                <section data-markdown="content/outro.md"
+                    data-separator-vertical="^\n\n"
+                    data-separator-notes="^Note:">
+                </section>
                 </script>
 			</div>
 		</div>
@@ -64,7 +76,7 @@
                 slideNumber: "c/t",
             });
             Reveal.addEventListener( 'ready', function( event ) {
-                document.querySelectorAll('li').forEach(function(li) {
+                document.querySelectorAll('ul > li').forEach(function(li) {
                     li.className = "fragment fade-in"
                 });
             } );

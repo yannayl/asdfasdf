@@ -1,4 +1,5 @@
 # Attacks
+Write It
 
 
 ## Structural Attacks
@@ -79,7 +80,6 @@ TODO
 
 
 ## Restricted Functionality Attacks
-
 Restricted overriding metadata to compromise the integrity of other data on the heap
 
 * Poisoned NULL Byte
@@ -87,3 +87,8 @@ Restricted overriding metadata to compromise the integrity of other data on the 
 Note:
 * bunch of ways to create overlapping chunks or forgotten chunks
 * turn liner write to relative write
+
+
+## Other Cool Tricks
+* `munmap` any page
+* Allocation of bins
