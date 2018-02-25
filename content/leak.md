@@ -38,7 +38,6 @@ Note: TODO code highlighting and walkthrough
 
 
 ## How #2 - overlapping chunks
-Read metadata written to chunk
 
 * Allocate readable data
 * Enlarge freed previous chunk
@@ -52,9 +51,10 @@ Read metadata written to chunk
 Read metadata via partially crafted pointer in FastBin which points to SmallBin chunk
 
 Example: [UAFIO: 0ctf Quals 2017 - BabyHeap2017](http://uaf.io/exploitation/2017/03/19/0ctf-Quals-2017-BabyHeap2017.html)
+Note: read it agian, understand it
 
 
-## Why Not
+## Why Not - Partial Overwrite
 * Exploitation with partial overwrites
     - Free two chunks
     - Partially overwrite first point to second
@@ -62,9 +62,11 @@ Example: [UAFIO: 0ctf Quals 2017 - BabyHeap2017](http://uaf.io/exploitation/2017
 * Use the brute-force
 * Example: [@_tsuro HITCON 2017 CTF: Damocles](https://gist.github.com/sroettger/e1a7f8ca5007e2646b8f8ce068ca6166)
 * Example2: [my  HITCON 2017 CTF: Damocles](https://gist.github.com/yannayl/301537016fde0f6fa8c0bbccf88fa7f3)
+Note: unclear, explain better
+Note: perhaps unite both Why Not slides
 
 
-## Why Not #2
+## Why Not #2 - Relative Write
 * Allocate mmapped page adjacent to GlibC
 * Relative partially overwrite pointer 
 * Example of relative **complete** overwrite: [Isaac's Blog: PlaidCTF 2017: bigpicture](https://poning.me/2017/04/28/bigpicture/)

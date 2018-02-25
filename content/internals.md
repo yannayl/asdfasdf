@@ -30,16 +30,23 @@ p1 = realloc(p0, size);
 * The basic memory unit managed by the allocator
 * Two possible states: Allocated or Freed
 * Content when allocated:
-    - chunk size & user data
-    - `| size | user-data........... |`
-    - `malloc` returns pointer to user data
+    ```C
+    -------------------------------
+    | size | user-data........... |
+    -------------------------------
+    ```
 * Content when freed:
-    - chunk size, bin* data, and chunk size once again in the end of the chunk
-    - `| size | fd | bk | ... | size  |`
+    ```C
+    -------------------------------
+    | size | fd | bk | ... | size |
+    -------------------------------
+    ```
 * Chunk's min size - 0x20, granularity - 0x10
 * The three LSB of size are flags
     - bit 0 - previous chunk in-use (`prev_inuse`)
 * Really big chunks are mmaped - out of scope
+Note:
+* malloc returns pointer to user data
 
 
 ### `malloc_chunk` struct
@@ -84,13 +91,11 @@ Lists of freed chunks
 ```
 * Contains bins and other heap info
 * `top` - points to "wilderness" 
-    - Top most chunk in the heap
-    - Not in any bin
-    - Never allocated
-* `main_arena` - pointer to the main arena
-    - Resides in glibc's data section
-    - Whereas chunks reside in heap
 * Secondary Arenas - out of scope for today
+
+Note:
+* top points to the wilderness which is a special chunk not in bins, never allocated
+* `main_arena` is resides in glibc whereas the chunks reside in the heap
 
 
 ### Structs Summary
