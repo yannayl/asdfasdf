@@ -102,6 +102,7 @@ Restricted overriding metadata to compromise the integrity of other data on the 
 
 * [Poisoned NULL Byte](https://googleprojectzero.blogspot.lu/2014/08/the-poisoned-nul-byte-2014-edition.html)
 * [Fragment-and-Write](https://www.alchemistowl.org/pocorgtfo/pocorgtfo16.pdf "Adventure of the Fragmented Chunks")
+
 Note:
 bunch of ways to create overlapping chunks or forgotten chunks
 turn liner write to relative write
