@@ -45,15 +45,9 @@ Note: TODO code highlighting and walkthrough
 * Split synth chunk (`alloc`)
 * Heap overwrites data with pointers
 * Read pointers
-* Example: [Isaac's Blog: 0CTF 2017 Quals - Baby Heap 2017](https://poning.me/2017/03/24/baby-heap-2017/)
-
-
-## How #3 - partial overwrite & read
-Read metadata via partially crafted pointer in FastBin which points to SmallBin chunk
-
-Example: [UAFIO: 0ctf Quals 2017 - BabyHeap2017](http://uaf.io/exploitation/2017/03/19/0ctf-Quals-2017-BabyHeap2017.html)
-Note: read it agian, understand it
-
+* Examples:
+    - [Isaac's Blog: 0CTF 2017 Quals - Baby Heap 2017](https://poning.me/2017/03/24/baby-heap-2017/)
+    - [UAFIO: 0ctf Quals 2017 - BabyHeap2017](http://uaf.io/exploitation/2017/03/19/0ctf-Quals-2017-BabyHeap2017.html)
 
 ## Why Not - Partial Overwrite
 * Exploitation with partial overwrites
@@ -61,10 +55,9 @@ Note: read it agian, understand it
     - Partially overwrite first point to second
     - Partially overwrie second to point to GlibC
 * Use the brute-force
-* Example: [@_tsuro HITCON 2017 CTF: Damocles](https://gist.github.com/sroettger/e1a7f8ca5007e2646b8f8ce068ca6166)
-* Example2: [my  HITCON 2017 CTF: Damocles](https://gist.github.com/yannayl/301537016fde0f6fa8c0bbccf88fa7f3)
-Note: unclear, explain better
-Note: perhaps unite both Why Not slides
+* Examples:
+    - [@_tsuro HITCON 2017 CTF: Damocles](https://gist.github.com/sroettger/e1a7f8ca5007e2646b8f8ce068ca6166)
+    - [my  HITCON 2017 CTF: Damocles](https://gist.github.com/yannayl/301537016fde0f6fa8c0bbccf88fa7f3)
 
 
 ## Why Not #2 - Relative Write
