@@ -3,19 +3,18 @@ Become a Wizard
 
 
 ## GlibC Malloc Hooks
-* `__free_hook`, `__malloc_hook`, `realloc_hook`
+* `__free_hook()`, `__malloc_hook()`, `realloc_hook()`
 * Attacker invokes API calls
-* Naturally combined with Fast Bin Attack 
 * May also be reached from I/O system
 Note:
 IO system - printf uses malloc/realloc/free internally when sizes are large engouh
 
 
 ## GlibC dlopen Hook
-* `_dl_open_hook->dlopen_mode`
+* `_dl_open_hook->dlopen_mode()`
 * Invoked upon `dlopen`
 * Attacker can esily trigger it:
-    - design detectable error -> `malloc_printerr` -> print backtrace -> dlopen
+    - design detectable error => `malloc_printerr` => print backtrace => dlopen
 * Naturally combined with frontlink attack
 Note:
 Since GlibC 2.27 `malloc_printerr` simply exits

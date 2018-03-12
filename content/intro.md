@@ -2,9 +2,15 @@
 Leak It, Write It, Become a Wizard
 
 
+## Who I Am
+* Yannay Livneh
+* Consulting security researcher
+* Israeli (and ~Swiss?)
+* Boulderer
+
+
 ## Raison D'etre
 * Comprehensive overview
-* Unfortunately can't cover all details
 * Intro and reference
 
 
