@@ -35,6 +35,7 @@ free(p0);
 free(p1);
 printf("libc: %p, heap: %p\n", *p0, *p1);
 ```
+
 Note: TODO code highlighting and walkthrough
 
 
@@ -48,6 +49,7 @@ Note: TODO code highlighting and walkthrough
 * Examples:
     - [Isaac's Blog: 0CTF 2017 Quals - Baby Heap 2017](https://poning.me/2017/03/24/baby-heap-2017/)
     - [UAFIO: 0ctf Quals 2017 - BabyHeap2017](http://uaf.io/exploitation/2017/03/19/0ctf-Quals-2017-BabyHeap2017.html)
+
 
 ## Why Not - Partial Overwrite
 * Exploitation with partial overwrites

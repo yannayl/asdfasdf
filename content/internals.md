@@ -1,5 +1,6 @@
 # Internals
 Brief version of [GlibC Malloc Internals][MallocInternals]
+
 [MallocInternals]: https://sourceware.org/glibc/wiki/MallocInternals
 
 
@@ -51,18 +52,18 @@ Note:
 
 ### `malloc_chunk` struct
 Internally, use this struct
-```C
+```
 ----------------------------------------------------------
 | prev_size | size | fd | bk | fd_nextsize | bk_nextsize |
 ----------------------------------------------------------
 ```
 * `malloc_chunk` is not aligned with the `chunk` it describes
-    ```C
- ------------------------------------------------------
- | prev_sz | sz | fd | bk | fd_nextsize | bk_nextsize |
- -----------------------------------------------------------------
-            | sz | fd | bk | fd_nextsize | bk_nextsize | ... | sz |
-            -------------------------------------------------------
+    ```
+     ------------------------------------------------------
+     | prev_sz | sz | fd | bk | fd_nextsize | bk_nextsize |
+     -----------------------------------------------------------------
+                | sz | fd | bk | fd_nextsize | bk_nextsize | ... | sz |
+                -------------------------------------------------------
     ```
 * `prev_size` valid iff `prev_inuse` bit is off
 * `size` in the end coincides with next `prev_size`
@@ -108,7 +109,9 @@ Note:
 
 ### Structs Summary
 ![arena and bins](content/arena_and_bins.png)
+
 Shamelessly copied from [GlibC Malloc Internals][MallocInternals]
+
 [MallocInternals]: https://sourceware.org/glibc/wiki/MallocInternals
 
 
