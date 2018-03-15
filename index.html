@@ -7,7 +7,12 @@
 		<title>Malloc</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-        <style>.reveal .slides { font-size:80%; } </style>
+        <style>
+            .reveal .slides { font-size:80%; }
+
+            .line { display: block; }
+            .line.focus { background: #fdf6e3; color: #657b83; }
+        </style>
 		<link rel="stylesheet" href="css/theme/black.css">
 
 		<!-- Theme used for syntax highlighting of code -->
@@ -69,7 +74,8 @@
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    { src: 'vendor/highlight.js/highlight.pack.js' },
+                    { src: 'node_modules/reveal-code-focus/reveal-code-focus.js', callback: function() { RevealCodeFocus(); } },
 				]
 			});
             Reveal.configure({
