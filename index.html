@@ -87,6 +87,47 @@
                 });
             } );
 
+            Reveal.addEventListener( 'fragmentshown', function( event ) {
+                if (event.fragment.getAttribute("class").split(" ")[1] != "fade-over") {
+                    return;
+                }
+                parent = event.fragment.parentNode.querySelectorAll( '.fragment' );
+                prev = null;
+
+                console.log("start loop\n");
+                for (i = 0; i < parent.length; i++ ) {
+                    if (event.fragment == parent[i]) {
+                        console.log("found\n")
+                        console.log(prev);
+                        break;
+                    }
+                    prev = parent[i];
+                }
+                console.log("finish loop\n");
+                prev.setAttribute("style", "display: none;");
+
+            } );
+
+            Reveal.addEventListener( 'fragmenthidden', function( event ) {
+                if (event.fragment.getAttribute("class").split(" ")[1] != "fade-over") {
+                    return;
+                }
+                parent = event.fragment.parentNode.querySelectorAll( '.fragment' );
+                prev = null;
+
+                console.log("start loop\n");
+                for (i = 0; i < parent.length; i++ ) {
+                    if (event.fragment == parent[i]) {
+                        console.log("found\n")
+                        console.log(prev);
+                        break;
+                    }
+                    prev = parent[i];
+                }
+                console.log("finish loop\n");
+                prev.setAttribute("style", "display: inherit;");
+
+            } );
 
 		</script>
 	</body>

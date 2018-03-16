@@ -127,6 +127,14 @@ body {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0); }
 
+.reveal .slides section .fragment.fade-over {
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s ease; }
+  .reveal .slides section .fragment.fade-over.visible {
+    opacity: 1;
+    visibility: inherit; }
+
 .reveal .slides section .fragment.current-visible {
   opacity: 0;
   visibility: hidden; }
