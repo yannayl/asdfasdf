@@ -25,7 +25,7 @@ Leak It
     - Next chunk is in the heap
 
 
-## Example
+## Leak - Example
 ```C
 p0 = malloc(0x100);
 malloc(0x20);
