@@ -235,7 +235,7 @@ Note:
 Overriding allocator's metadata to induce allocation to user in arbitrary memory
 
 
-### [Tcache Poison Attack]
+### [Tcache Poison Attack] (2.26+)
 * `tcache` is singly linked cache of chunks
     ```C
     static void *tcache_get (size_t tc_idx)
@@ -251,8 +251,156 @@ Overriding allocator's metadata to induce allocation to user in arbitrary memory
 [Tcache Poison Attack]: http://tukan.farm/2017/07/08/tcache/
 
 
-### Tcache Poison Atttack - Example
-TODO
+### Tcache Poison Atttack (2.26) - Example
+```C
+char buf[8] = {0};
+void **p0 = malloc(0x90);
+free(p0);
+*p0 = buf;
+malloc(0x90);
+void **p1 = malloc(0x90);
+*p1 = 0xdeadbeef;
+```
+
+```C 
+         +---------------------------------------------+
+tcache   |NULL|NULL|NULL|...                           |
+         +---------------------------------------------+
+
+ 
+         +------------------------------------------------------+
+Heap     |wildreness                                            |
+         +------------------------------------------------------+
+         |
+         top
+ 
+ 
+      
+             +--------+
+buf@stack    |00000000|
+             +--------+                      
+```
+<!-- .element: class="fragment" data-code-focus="1" -->
+
+```C 
+         +---------------------------------------------+
+tcache   |NULL|NULL|NULL|...                           |
+         +---------------------------------------------+
+
+ 
+         +------------------------------------------------------+
+Heap     |91|...    |wildreness                                 |
+         +------------------------------------------------------+
+            |       |
+            p0      top
+      
+ 
+ 
+             +--------+
+buf@stack    |00000000|
+             +--------+                      
+```
+<!-- .element: class="fragment fade-over" data-code-focus="2" -->
+
+```C 
+         +---------------------------------------------+
+tcache   | +  |NULL|NULL|...                           |
+         +-|-------------------------------------------+
+           +-+
+             |
+         +---v--------------------------------------------------+
+Heap     |91| NULL  |wildreness                                 |
+         +------------------------------------------------------+
+            |       |
+            p0      top
+                 
+ 
+ 
+             +--------+
+buf@stack    |00000000|
+             +--------+                      
+```
+<!-- .element: class="fragment fade-over" data-code-focus="3" -->
+
+```C 
+         +---------------------------------------------+
+tcache   | +  |NULL|NULL|...                           |
+         +-|-------------------------------------------+
+           +-+
+             |
+         +---v--------------------------------------------------+
+Heap     |91|  +    |wildreness                                 |
+         +-----|------------------------------------------------+
+            |  |    |
+            p0 |    top
+               |
+               |
+               |
+             +-V------+
+buf@stack    |00000000|
+             +--------+                      
+```
+<!-- .element: class="fragment fade-over" data-code-focus="4" -->
+
+```C 
+         +---------------------------------------------+
+tcache   | +  |NULL|NULL|...                           |
+         +-|-------------------------------------------+
+      +----+  
+      |       
+      |  +------------------------------------------------------+
+Heap  |  |91|...    |wildreness                                 |
+      |  +------------------------------------------------------+
+      |     |       |
+      |     p0      top
+      +--------+
+               |
+               |
+             +-V------+
+buf@stack    |00000000|
+             +--------+                      
+```
+<!-- .element: class="fragment fade-over" data-code-focus="5" -->
+
+```C 
+         +---------------------------------------------+
+tcache   |NULL|NULL|NULL|...                           |
+         +---------------------------------------------+
+              
+ 
+         +------------------------------------------------------+
+Heap     |91|...    |wildreness                                 |
+         +------------------------------------------------------+
+            |       |
+            p0      top
+
+             p1
+             |
+             +--------+
+buf@stack    |00000000|
+             +--------+                      
+```
+<!-- .element: class="fragment fade-over" data-code-focus="6" -->
+
+```C 
+         +---------------------------------------------+
+tcache   |NULL|NULL|NULL|...                           |
+         +---------------------------------------------+
+ 
+               
+         +------------------------------------------------------+
+Heap     |91|...    |wildreness                                 |
+         +------------------------------------------------------+
+            |       |
+            p0      top
+
+             p1
+             |
+             +--------+
+buf@stack    |efbeadde|
+             +--------+                      
+```
+<!-- .element: class="fragment fade-over" data-code-focus="7" -->
 
 
 ### [Malloc Maleficarum] et al
