@@ -16,7 +16,7 @@ Using the allocator's internal data structures for overwriting arbtirary memory
         prev->fd = p;
     }
     ```
-* Control `prev`'s fd => write-pointer-to-what-where
+* Control prev's fd => write-pointer-to-what-where <!-- .element: data-code-focus="3" -->
 * Controlling prev requires:
     - Ability to [overwrite the list's head](http://blog.frizn.fr/glibc/glibc-heap-to-rip)
     - Insertion to large bin
@@ -218,7 +218,7 @@ if (p->bk->fd != p) malloc_printerr(check_action, ...)
 ```
 * Still useful:
     - [Unsorted Bin Attack]: un-mitigated unlink
-    - [House of Cards]: overwrite global `check_action` which changes `malloc_printer` to no-op
+    - [House of Cards]: overwrite global `check_action` which changes `malloc_printerr` to no-op
     - [Unlink pointer] to attacker controlled data
 
 [Vudo Malloc Tricks]: http://phrack.org/issues/57/8.html
@@ -245,7 +245,7 @@ Overriding allocator's metadata to induce allocation to user in arbitrary memory
       return (void *) e;
     }
     ```
-* Attacker controls `e->next` (`fd`)
+* Attacker controls e->next (fd) <!-- .element: data-code-focus="4" -->
 * Malloc returns attacker controlled location 
 
 [Tcache Poison Attack]: http://tukan.farm/2017/07/08/tcache/

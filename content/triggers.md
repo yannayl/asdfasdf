@@ -6,7 +6,8 @@ Become a Wizard
 * `__free_hook()`, `__malloc_hook()`, `realloc_hook()`
     ```C
     void * __libc_malloc (size_t bytes) {
-      void *(*hook) (size_t, const void *) = atomic_forced_read (__malloc_hook);
+      void *(*hook) (size_t, const void *) =
+        atomic_forced_read (__malloc_hook);
       if (__builtin_expect (hook != NULL, 0))
         return (*hook)(bytes, RETURN_ADDRESS (0));
     ```
@@ -38,6 +39,14 @@ Since GlibC 2.27 `malloc_printerr` simply exits
 * Write-ups:
     - The original [House of Orange](http://4ngelboy.blogspot.lu/2016/10/hitcon-ctf-qual-2016-house-of-orange.html)
     - With [mitigation bypass](https://github.com/chksum0/writeups/blob/master/34c3/300/writeup.md)
+
+
+## `malloc_printerr` Mitigation
+* Version 2.27
+* `malloc_printerr` calls `abort`
+* Mitigate (complicate) use of process termination hooks
+    - dlopen
+    - File Struct
 
 
 ## Program's Specific

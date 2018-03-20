@@ -38,9 +38,9 @@ p1 = realloc(p0, size);
     ```
 * Content when freed:
     ```C
-    -------------------------------
-    | size | fd | bk | ... | size |
-    -------------------------------
+    -----------------------------------------------------------
+    | size | fd | bk | fd_nextsize | bk_nextsize | ... | size |
+    -----------------------------------------------------------
     ```
 * Chunk's min size - 0x20, granularity - 0x10
 * The three LSB of size are flags
@@ -62,8 +62,8 @@ Internally, use this struct
      ------------------------------------------------------
      | prev_sz | sz | fd | bk | fd_nextsize | bk_nextsize |
      -----------------------------------------------------------------
-                | sz | fd | bk | fd_nextsize | bk_nextsize | ... | sz |
-                -------------------------------------------------------
+               | sz | fd | bk | fd_nextsize | bk_nextsize | ... | sz |
+               -------------------------------------------------------
     ```
 * `prev_size` valid iff `prev_inuse` bit is off
 * `size` in the end coincides with next `prev_size`

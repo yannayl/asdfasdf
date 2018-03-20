@@ -4,7 +4,7 @@ Let's get our hands dirty
 
 ## GlibC Version
 
-Native libc version different than target use LD_PRELOAD
+Native libc version different than target use `LD_PRELOAD`
 ```python
 from pwn import *
 
@@ -48,14 +48,15 @@ r = main.process(env={'LD_PRELOAD' : libc.path})
     - e.g. Ubuntu 17.10
 * Distros provide sources
     - e.g. [glibc-source](https://launchpad.net/~ubuntu-security/+archive/ubuntu/ppa/+build/12759262/+files/glibc-source_2.24-9ubuntu2.2_all.deb)
-* Unpack it and let gdb find it using the substitute-path command
+* Unpack it and let gdb find it using the `substitute-path` command
     ```python
     gdb.attach(r,
         gdb_load_symbols_cmd(dbg_file, libc, r.libs()[libc.path])) + """
         set substitute-path /build/glibc-mXZSwJ ./glibc-src
         """
     ```
-    - The original source can be found using info source
+    - The original source can be found using `info source`
+
 
 
 ## Putting It All Together

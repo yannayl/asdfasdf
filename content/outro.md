@@ -1,13 +1,8 @@
 # Outro
 
 
-## References
-
-
 ## Contact Me!
 Yannay Livneh
-
-mail@yannayl.com
 
 @yannayli
 

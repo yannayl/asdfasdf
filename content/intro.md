@@ -20,4 +20,3 @@ Leak It, Write It, Become a Wizard
 * Writing (partially) controlled data
 * Executing code
 * Handy CTF setup
-* Futures, references, questions
